@@ -4,54 +4,27 @@
     <meta charset="UTF-8">
     <title>Ralf Gebert Timing Services Live Web Dashboard</title>
     <style>
-        body { background-color: #0a0a0c; color: #e6e6e6; font-family: Arial, sans-serif; text-align: center; padding: 20px; margin: 0; }
-        h1 { color: #00dcff; font-size: 2.8rem; margin-top: 10px; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
-        
-        /* Header Utility Styles */
-        .system-info-bar { display: flex; justify-content: space-between; max-width: 1200px; margin: 0 auto 25px auto; padding: 0 10px; font-size: 1.1rem; color: #969ba5; }
-        .live-clock { color: #ffcc00; font-weight: bold; font-family: monospace; font-size: 1.2rem; }
-        
-        /* Container Layouts */
-        .container { display: flex; justify-content: center; gap: 30px; max-width: 1200px; margin: 0 auto 30px auto; }
-        .lane-panel { background-color: #181a20; width: 48%; padding: 20px; border-radius: 10px; border: 2px solid #3c4150; text-align: left; box-sizing: border-box; }
-        .lane-title { color: #ffcc00; font-size: 2rem; margin-top: 0; text-align: center; border-bottom: 2px solid #ffcc00; padding-bottom: 10px; }
-        
-        /* Driver & Card Styling */
-        .driver-info { background: #242632; padding: 12px; border-radius: 5px; font-size: 1.2rem; margin-bottom: 15px; text-align: center; font-weight: bold; border-left: 4px solid #00dcff; }
+        body { background-color: #0a0a0c; color: #e6e6e6; font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        h1 { color: #00dcff; font-size: 3rem; margin-bottom: 30px; }
+        .container { display: flex; justify-content: center; gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .lane-panel { background-color: #181a20; width: 45%; padding: 20px; border-radius: 10px; border: 2px solid #3c4150; text-align: left; }
+        .lane-title { color: #ffcc00; font-size: 2rem; margin-top: 0; text-align: center; }
+        .driver-info { background: #242632; padding: 10px; border-radius: 5px; font-size: 1.2rem; margin-bottom: 20px; text-align: center; }
         .metric-row { display: flex; justify-content: space-between; padding: 12px 20px; border-bottom: 1px solid #2d3039; font-size: 1.1rem; }
         .label { color: #969ba5; font-weight: bold; }
-        .value { color: #00ff64; font-family: monospace; font-size: 1.4rem; font-weight: bold; }
-        
-        /* Historical Section Layout */
-        .history-section { max-width: 1200px; margin: 0 auto; background-color: #121317; border: 2px solid #242632; border-radius: 10px; padding: 20px; text-align: left; }
-        .history-title { color: #00dcff; font-size: 1.6rem; margin-top: 0; margin-bottom: 15px; text-transform: uppercase; border-bottom: 1px solid #242632; padding-bottom: 8px; }
-        .history-grid { display: flex; justify-content: space-between; gap: 20px; }
-        .history-lane { width: 50%; background-color: #181a20; padding: 15px; border-radius: 6px; border: 1px solid #2d3039; }
-        .history-lane-header { color: #ffcc00; font-size: 1.2rem; margin-top: 0; margin-bottom: 10px; font-weight: bold; }
-        .history-metrics-line { font-family: monospace; font-size: 1.1rem; color: #cbd0d8; line-height: 1.6; }
-        .history-highlight { color: #00ff64; font-weight: bold; }
-
-        /* Loading / Network Messages */
-        #loading { font-size: 1.4rem; color: #ffcc00; margin-top: 50px; background: #221111; padding: 15px 30px; display: inline-block; border-radius: 5px; border: 1px solid #ffcc00; }
+        .value { color: #00ff64; font-family: monospace; font-size: 1.3rem; }
+        #loading { font-size: 1.5rem; color: #ffcc00; margin-top: 50px; background: #221111; padding: 15px; display: inline-block; border-radius: 5px; }
     </style>
 </head>
 <body>
 
     <h1>Ralf Gebert Timing Services</h1>
-    
-    <!-- Info bar supplying live client timestamps -->
-    <div class="system-info-bar">
-        <div>STATUS: <span id="status-indicator" style="color: #ffcc00;">INITIALISING...</span></div>
-        <div class="live-clock" id="web-clock">TRACK TIME: --:--:--</div>
-    </div>
-
     <div id="loading">Connecting to track telemetry database...</div>
 
-    <!-- MAIN LIVE RACE CONTAINER -->
     <div class="container" id="dashboard" style="display:none;">
-        <!-- LANE 1 LIVE -->
+        <!-- LANE 1 -->
         <div class="lane-panel">
-            <h2 class="lane-title">LANE 1 - LIVE</h2>
+            <h2 class="lane-title">LANE 1</h2>
             <div class="driver-info" id="l1-driver">Driver: --- | Class: --- | # ---</div>
             <div class="driver-info" id="l1-car">Car: ---</div>
             <div class="metric-row"><span class="label">REACTION TIME:</span><span class="value" id="l1-rt">---</span></div>
@@ -60,9 +33,9 @@
             <div class="metric-row"><span class="label">1/4 SPEED (km/h):</span><span class="value" id="l1-4s">---</span></div>
         </div>
 
-        <!-- LANE 2 LIVE -->
+        <!-- LANE 2 -->
         <div class="lane-panel">
-            <h2 class="lane-title">LANE 2 - LIVE</h2>
+            <h2 class="lane-title">LANE 2</h2>
             <div class="driver-info" id="l2-driver">Driver: --- | Class: --- | # ---</div>
             <div class="driver-info" id="l2-car">Car: ---</div>
             <div class="metric-row"><span class="label">REACTION TIME:</span><span class="value" id="l2-rt">---</span></div>
@@ -72,46 +45,9 @@
         </div>
     </div>
 
-    <!-- PREVIOUS HISTORICAL RESULTS PANEL -->
-    <div class="history-section" id="history-container" style="display:none;">
-        <div class="history-title">Previous Race Results</div>
-        <div class="history-grid">
-            <!-- Lane 1 History Pane -->
-            <div class="history-lane">
-                <div class="history-lane-header" id="prev-l1-title">LANE 1: #--- ---</div>
-                <div class="history-metrics-line">
-                    RT: <span class="history-highlight" id="prev-l1-rt">---</span>s | 
-                    60FT: <span class="history-highlight" id="prev-l1-60">---</span>s | 
-                    1/4 ET: <span class="history-highlight" id="prev-l1-4et">---</span>s | 
-                    SPEED: <span class="history-highlight" id="prev-l1-4s">---</span> km/h
-                </div>
-            </div>
-            <!-- Lane 2 History Pane -->
-            <div class="history-lane">
-                <div class="history-lane-header" id="prev-l2-title">LANE 2: #--- ---</div>
-                <div class="history-metrics-line">
-                    RT: <span class="history-highlight" id="prev-l2-rt">---</span>s | 
-                    60FT: <span class="history-highlight" id="prev-l2-60">---</span>s | 
-                    1/4 ET: <span class="history-highlight" id="prev-l2-4et">---</span>s | 
-                    SPEED: <span class="history-highlight" id="prev-l2-4s">---</span> km/h
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // CRITICAL NOTE: Changed query payload string mapping from limit=1 to limit=2
-        const URL = "https://qgprnewkdzluruihzyhy.supabase.co/rest/v1/raceresults?order=id.desc&limit=2";
+        const URL = "https://qgprnewkdzluruihzyhy.supabase.co/rest/v1/raceresults?order=id.desc&limit=1";
         const KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFncHJuZXdrZHpsdXJ1aWh6eWh5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMjI5MDgsImV4cCI6MjA5NzY5ODkwOH0.WjSnTF80FAABypJuDJfSTvd5_qigr4mJa-TCEsE-4Bc";
-
-        // Web Clock Updates Execution Hook
-        styleClockUpdater();
-        setInterval(styleClockUpdater, 1000);
-
-        function styleClockUpdater() {
-            const now = new Date();
-            document.getElementById("web-clock").innerText = "TRACK TIME: " + now.toLocaleTimeString();
-        }
 
         async function fetchLiveScores() {
             try {
@@ -119,39 +55,46 @@
                 
                 if (!response.ok) {
                     document.getElementById("loading").innerText = "Database Error: Connection rejected. Check API keys.";
-                    document.getElementById("status-indicator").innerText = "OFFLINE";
-                    document.getElementById("status-indicator").style.color = "#ff3333";
                     return;
                 }
 
                 const data = await response.json();
                 
+                // If connection works but database table has zero rows in it
                 if (data && data.length === 0) {
-                    document.getElementById("loading").innerText = "Table is empty. Waiting for track data sync upload...";
-                    document.getElementById("status-indicator").innerText = "IDLE";
-                    document.getElementById("status-indicator").style.color = "#ffcc00";
+                    document.getElementById("loading").innerText = "Database Connected, but Table is completely EMPTY. Waiting for Python script to upload data...";
                     return;
                 }
 
                 if (data && data.length > 0) {
+                    const run = data[0]; // FIXED: Properly select the first item inside the rows array list
                     document.getElementById("loading").style.display = "none";
                     document.getElementById("dashboard").style.display = "flex";
-                    document.getElementById("status-indicator").innerText = "LIVE SCORES CONNECTED";
-                    document.getElementById("status-indicator").style.color = "#00ff64";
 
-                    // --- PARSE LIVE CURRENT RACE (Row Index Data 0) ---
-                    const currentRun = data[0];
-                    
-                    // Lane 1 Live Parsing
-                    document.getElementById("l1-driver").innerText = `Driver: ${currentRun.Driver1 || '---'} | Class: ${currentRun.Class1 || '---'} | # ${currentRun.ID1 || '---'}`;
-                    document.getElementById("l1-car").innerText = `Car: ${currentRun.Car1 || '---'}`;
-                    document.getElementById("l1-rt").innerText = currentRun.Reaction1 || '---';
-                    document.getElementById("l1-60").innerText = currentRun.Sixty1 || '---';
-                    document.getElementById("l1-4et").innerText = currentRun.QuartT1 || '---';
-                    document.getElementById("l1-4s").innerText = currentRun.QuartS1 || '---';
+                    // Populate Lane 1 Elements
+                    document.getElementById("l1-driver").innerText = `Driver: ${run.Driver1 || '---'} | Class: ${run.Class1 || '---'} | # ${run.ID1 || '---'}`;
+                    document.getElementById("l1-car").innerText = `Car: ${run.Car1 || '---'}`;
+                    document.getElementById("l1-rt").innerText = run.Reaction1 || '---';
+                    document.getElementById("l1-60").innerText = run.Sixty1 || '---';
+                    document.getElementById("l1-4et").innerText = run.QuartT1 || '---';
+                    document.getElementById("l1-4s").innerText = run.QuartS1 || '---';
 
-                    // Lane 2 Live Parsing
-                    document.getElementById("l2-driver").innerText = `Driver: ${currentRun.Driver2 || '---'} | Class: ${currentRun.Class2 || '---'} | # ${currentRun.ID2 || '---'}`;
-                    document.getElementById("l2-car").innerText = `Car: ${currentRun.Car2 || '---'}`;
-                    document.getElementById("l2-rt").innerText = currentRun.Reaction2 || '---';
-                    document.getElementById("l2-60").innerText = currentRun.Sixty2 || '---';document.getElementById("l2-4et").innerText = currentRun.QuartT2 || '---';document.getElementById("l2-4s").innerText = currentRun.QuartS1 || '---';// --- PARSE PREVIOUS HISTORICAL RUN (Row Index Data 1) ---if (data.length > 1) {const prevRun = data[1];document.getElementById("history-container").style.display = "block";// Populate Lane 1 Historical Column Fieldsdocument.getElementById("prev-l1-title").innerText = LANE 1: #${prevRun.ID1 || '---'} ${prevRun.Driver1 || '---'} [${prevRun.Class1 || '---'}];document.getElementById("prev-l1-rt").innerText = prevRun.Reaction1 || '---';document.getElementById("prev-l1-60").innerText = prevRun.Sixty1 || '---';document.getElementById("prev-l1-4et").innerText = prevRun.QuartT1 || '---';document.getElementById("prev-l1-4s").innerText = prevRun.QuartS1 || '---';// Populate Lane 2 Historical Column Fieldsdocument.getElementById("prev-l2-title").innerText = LANE 2: #${prevRun.ID2 || '---'} ${prevRun.Driver2 || '---'} [${prevRun.Class2 || '---'}];document.getElementById("prev-l2-rt").innerText = prevRun.Reaction2 || '---';document.getElementById("prev-l2-60").innerText = prevRun.Sixty2 || '---';document.getElementById("prev-l2-4et").innerText = prevRun.QuartT2 || '---';document.getElementById("prev-l2-4s").innerText = prevRun.QuartS2 || '---';} else {// Safe fallback handling if database only has 1 total row recorded so fardocument.getElementById("history-container").style.display = "none";}}} catch (err) {document.getElementById("loading").innerText = "Network Error: Could not reach Supabase infrastructure servers.";document.getElementById("status-indicator").innerText = "NETWORK ERROR";document.getElementById("status-indicator").style.color = "#ff3333";console.error(err);}}fetchLiveScores();setInterval(fetchLiveScores, 3000);
+                    // Populate Lane 2 Elements
+                    document.getElementById("l2-driver").innerText = `Driver: ${run.Driver2 || '---'} | Class: ${run.Class2 || '---'} | # ${run.ID2 || '---'}`;
+                    document.getElementById("l2-car").innerText = `Car: ${run.Car2 || '---'}`;
+                    document.getElementById("l2-rt").innerText = run.Reaction2 || '---';
+                    document.getElementById("l2-60").innerText = run.Sixty2 || '---';
+                    document.getElementById("l2-4et").innerText = run.QuartT2 || '---';
+                    document.getElementById("l2-4s").innerText = run.QuartS2 || '---';
+                }
+            } catch (err) { 
+                document.getElementById("loading").innerText = "Network Error: Could not connect to internet database server.";
+                console.error(err); 
+            }
+        }
+
+        fetchLiveScores();
+        setInterval(fetchLiveScores, 3000); 
+    </script>
+</body>
+</html>
