@@ -1,100 +1,371 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Ralf Gebert Timing Services Live Web Dashboard</title>
-    <style>
-        body { background-color: #0a0a0c; color: #e6e6e6; font-family: Arial, sans-serif; text-align: center; padding: 20px; }
-        h1 { color: #00dcff; font-size: 3rem; margin-bottom: 30px; }
-        .container { display: flex; justify-content: center; gap: 30px; max-width: 1200px; margin: 0 auto; }
-        .lane-panel { background-color: #181a20; width: 45%; padding: 20px; border-radius: 10px; border: 2px solid #3c4150; text-align: left; }
-        .lane-title { color: #ffcc00; font-size: 2rem; margin-top: 0; text-align: center; }
-        .driver-info { background: #242632; padding: 10px; border-radius: 5px; font-size: 1.2rem; margin-bottom: 20px; text-align: center; }
-        .metric-row { display: flex; justify-content: space-between; padding: 12px 20px; border-bottom: 1px solid #2d3039; font-size: 1.1rem; }
-        .label { color: #969ba5; font-weight: bold; }
-        .value { color: #00ff64; font-family: monospace; font-size: 1.3rem; }
-        #loading { font-size: 1.5rem; color: #ffcc00; margin-top: 50px; background: #221111; padding: 15px; display: inline-block; border-radius: 5px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ralf Gebert Timing Services Live Dashboard</title>
+
+<style>
+
+body{
+    background:#0a0a0c;
+    color:#e6e6e6;
+    font-family:Arial,sans-serif;
+    text-align:center;
+    padding:20px;
+}
+
+h1{
+    color:#00dcff;
+    font-size:3rem;
+    margin-bottom:10px;
+}
+
+h2{
+    color:#ffcc00;
+}
+
+#clock{
+    font-size:1.5rem;
+    color:white;
+    margin-bottom:20px;
+}
+
+#loading{
+    font-size:1.4rem;
+    color:#ffcc00;
+    margin-top:20px;
+}
+
+.container{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    margin-bottom:30px;
+}
+
+.lane-panel{
+    background:#181a20;
+    border:2px solid #3c4150;
+    border-radius:10px;
+    padding:20px;
+    width:500px;
+    text-align:left;
+}
+
+.lane-title{
+    color:#ffcc00;
+    text-align:center;
+}
+
+.driver-info{
+    background:#242632;
+    padding:10px;
+    border-radius:5px;
+    margin-bottom:10px;
+    text-align:center;
+}
+
+.metric-row{
+    display:flex;
+    justify-content:space-between;
+    padding:10px;
+    border-bottom:1px solid #2d3039;
+}
+
+.label{
+    color:#a0a0a0;
+    font-weight:bold;
+}
+
+.value{
+    color:#00ff64;
+    font-family:monospace;
+    font-size:1.2rem;
+}
+
+.section-title{
+    margin-top:40px;
+    margin-bottom:20px;
+    color:#00dcff;
+}
+
+</style>
+
 </head>
+
 <body>
 
-    <h1>Ralf Gebert Timing Services</h1>
-    <div id="loading">Connecting to track telemetry database...</div>
+<h1>Ralf Gebert Timing Services</h1>
 
-    <div class="container" id="dashboard" style="display:none;">
-        <!-- LANE 1 -->
-        <div class="lane-panel">
-            <h2 class="lane-title">LANE 1</h2>
-            <div class="driver-info" id="l1-driver">Driver: --- | Class: --- | # ---</div>
-            <div class="driver-info" id="l1-car">Car: ---</div>
-            <div class="metric-row"><span class="label">REACTION TIME:</span><span class="value" id="l1-rt">---</span></div>
-            <div class="metric-row"><span class="label">60 FOOT TIME:</span><span class="value" id="l1-60">---</span></div>
-            <div class="metric-row"><span class="label">1/4 MILE TIME:</span><span class="value" id="l1-4et">---</span></div>
-            <div class="metric-row"><span class="label">1/4 SPEED (km/h):</span><span class="value" id="l1-4s">---</span></div>
+<div id="clock"></div>
+
+<div id="loading">
+Connecting to track telemetry database...
+</div>
+
+<!-- CURRENT RACE -->
+
+<h2 class="section-title">Current Race</h2>
+
+<div class="container" id="dashboard" style="display:none;">
+
+    <div class="lane-panel">
+
+        <h2 class="lane-title">LANE 1</h2>
+
+        <div class="driver-info" id="l1-driver">
+            Driver: ---
         </div>
 
-        <!-- LANE 2 -->
-        <div class="lane-panel">
-            <h2 class="lane-title">LANE 2</h2>
-            <div class="driver-info" id="l2-driver">Driver: --- | Class: --- | # ---</div>
-            <div class="driver-info" id="l2-car">Car: ---</div>
-            <div class="metric-row"><span class="label">REACTION TIME:</span><span class="value" id="l2-rt">---</span></div>
-            <div class="metric-row"><span class="label">60 FOOT TIME:</span><span class="value" id="l2-60">---</span></div>
-            <div class="metric-row"><span class="label">1/4 MILE TIME:</span><span class="value" id="l2-4et">---</span></div>
-            <div class="metric-row"><span class="label">1/4 SPEED (km/h):</span><span class="value" id="l2-4s">---</span></div>
+        <div class="driver-info" id="l1-car">
+            Car: ---
         </div>
+
+        <div class="metric-row">
+            <span class="label">REACTION</span>
+            <span class="value" id="l1-rt">---</span>
+        </div>
+
+        <div class="metric-row">
+            <span class="label">60 FT</span>
+            <span class="value" id="l1-60">---</span>
+        </div>
+
+        <div class="metric-row">
+            <span class="label">1/4 ET</span>
+            <span class="value" id="l1-4et">---</span>
+        </div>
+
+        <div class="metric-row">
+            <span class="label">1/4 SPEED</span>
+            <span class="value" id="l1-4s">---</span>
+        </div>
+
     </div>
 
-    <script>
-        const URL = "https://qgprnewkdzluruihzyhy.supabase.co/rest/v1/raceresults?order=id.desc&limit=1";
-        const KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFncHJuZXdrZHpsdXJ1aWh6eWh5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMjI5MDgsImV4cCI6MjA5NzY5ODkwOH0.WjSnTF80FAABypJuDJfSTvd5_qigr4mJa-TCEsE-4Bc";
+    <div class="lane-panel">
 
-        async function fetchLiveScores() {
-            try {
-                const response = await fetch(URL, { headers: { "apikey": KEY, "Authorization": "Bearer " + KEY } });
-                
-                if (!response.ok) {
-                    document.getElementById("loading").innerText = "Database Error: Connection rejected. Check API keys.";
-                    return;
-                }
+        <h2 class="lane-title">LANE 2</h2>
 
-                const data = await response.json();
-                
-                // If connection works but database table has zero rows in it
-                if (data && data.length === 0) {
-                    document.getElementById("loading").innerText = "Database Connected, but Table is completely EMPTY. Waiting for Python script to upload data...";
-                    return;
-                }
+        <div class="driver-info" id="l2-driver">
+            Driver: ---
+        </div>
 
-                if (data && data.length > 0) {
-                    const run = data[0]; // FIXED: Properly select the first item inside the rows array list
-                    document.getElementById("loading").style.display = "none";
-                    document.getElementById("dashboard").style.display = "flex";
+        <div class="driver-info" id="l2-car">
+            Car: ---
+        </div>
 
-                    // Populate Lane 1 Elements
-                    document.getElementById("l1-driver").innerText = `Driver: ${run.Driver1 || '---'} | Class: ${run.Class1 || '---'} | # ${run.ID1 || '---'}`;
-                    document.getElementById("l1-car").innerText = `Car: ${run.Car1 || '---'}`;
-                    document.getElementById("l1-rt").innerText = run.Reaction1 || '---';
-                    document.getElementById("l1-60").innerText = run.Sixty1 || '---';
-                    document.getElementById("l1-4et").innerText = run.QuartT1 || '---';
-                    document.getElementById("l1-4s").innerText = run.QuartS1 || '---';
+        <div class="metric-row">
+            <span class="label">REACTION</span>
+            <span class="value" id="l2-rt">---</span>
+        </div>
 
-                    // Populate Lane 2 Elements
-                    document.getElementById("l2-driver").innerText = `Driver: ${run.Driver2 || '---'} | Class: ${run.Class2 || '---'} | # ${run.ID2 || '---'}`;
-                    document.getElementById("l2-car").innerText = `Car: ${run.Car2 || '---'}`;
-                    document.getElementById("l2-rt").innerText = run.Reaction2 || '---';
-                    document.getElementById("l2-60").innerText = run.Sixty2 || '---';
-                    document.getElementById("l2-4et").innerText = run.QuartT2 || '---';
-                    document.getElementById("l2-4s").innerText = run.QuartS2 || '---';
-                }
-            } catch (err) { 
-                document.getElementById("loading").innerText = "Network Error: Could not connect to internet database server.";
-                console.error(err); 
+        <div class="metric-row">
+            <span class="label">60 FT</span>
+            <span class="value" id="l2-60">---</span>
+        </div>
+
+        <div class="metric-row">
+            <span class="label">1/4 ET</span>
+            <span class="value" id="l2-4et">---</span>
+        </div>
+
+        <div class="metric-row">
+            <span class="label">1/4 SPEED</span>
+            <span class="value" id="l2-4s">---</span>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- PREVIOUS RACE -->
+
+<h2 class="section-title">Previous Race</h2>
+
+<div class="container" id="previous-dashboard">
+
+    <div class="lane-panel">
+
+        <h2 class="lane-title">LANE 1</h2>
+
+        <div class="driver-info" id="prev-l1-driver"></div>
+        <div class="driver-info" id="prev-l1-car"></div>
+
+        <div class="metric-row">
+            <span class="label">REACTION</span>
+            <span class="value" id="prev-l1-rt"></span>
+        </div>
+
+        <div class="metric-row">
+            <span class="label">60 FT</span>
+            <span class="value" id="prev-l1-60"></span>
+        </div>
+
+        <div class="metric-row">
+            <span class="label">1/4 ET</span>
+            <span class="value" id="prev-l1-4et"></span>
+        </div>
+
+        <div class="metric-row">
+            <span class="label">1/4 SPEED</span>
+            <span class="value" id="prev-l1-4s"></span>
+        </div>
+
+    </div>
+
+    <div class="lane-panel">
+
+        <h2 class="lane-title">LANE 2</h2>
+
+        <div class="driver-info" id="prev-l2-driver"></div>
+        <div class="driver-info" id="prev-l2-car"></div>
+
+        <div class="metric-row">
+            <span class="label">REACTION</span>
+            <span class="value" id="prev-l2-rt"></span>
+        </div>
+
+        <div class="metric-row">
+            <span class="label">60 FT</span>
+            <span class="value" id="prev-l2-60"></span>
+        </div>
+
+        <div class="metric-row">
+            <span class="label">1/4 ET</span>
+            <span class="value" id="prev-l2-4et"></span>
+        </div>
+
+        <div class="metric-row">
+            <span class="label">1/4 SPEED</span>
+            <span class="value" id="prev-l2-4s"></span>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const URL =
+"https://qgprnewkdzluruihzyhy.supabase.co/rest/v1/raceresults?order=id.desc&limit=2";
+
+const KEY =
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFncHJuZXdrZHpsdXJ1aWh6eWh5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMjI5MDgsImV4cCI6MjA5NzY5ODkwOH0.WjSnTF80FAABypJuDJfSTvd5_qigr4mJa-TCEsE-4Bc";
+
+function updateClock(){
+
+    const now = new Date();
+
+    document.getElementById("clock").innerText =
+        now.toLocaleDateString() +
+        " " +
+        now.toLocaleTimeString();
+}
+
+updateClock();
+setInterval(updateClock,1000);
+
+async function fetchLiveScores(){
+
+    try{
+
+        const response = await fetch(URL,{
+            headers:{
+                "apikey":KEY,
+                "Authorization":"Bearer " + KEY
             }
+        });
+
+        if(!response.ok){
+            throw new Error("Database connection failed");
         }
 
-        fetchLiveScores();
-        setInterval(fetchLiveScores, 3000); 
-    </script>
+        const data = await response.json();
+
+        if(data.length === 0){
+
+            document.getElementById("loading").innerText =
+            "Connected to database. Waiting for race results...";
+
+            return;
+        }
+
+        document.getElementById("loading").style.display="none";
+        document.getElementById("dashboard").style.display="flex";
+
+        const currentRun = data[0];
+        const previousRun = data[1];
+
+        /* CURRENT RACE */
+
+        document.getElementById("l1-driver").innerText =
+        `Driver: ${currentRun.Driver1 || "---"} | Class: ${currentRun.Class1 || "---"} | # ${currentRun.ID1 || "---"}`;
+
+        document.getElementById("l1-car").innerText =
+        `Car: ${currentRun.Car1 || "---"}`;
+
+        document.getElementById("l1-rt").innerText = currentRun.Reaction1 || "---";
+        document.getElementById("l1-60").innerText = currentRun.Sixty1 || "---";
+        document.getElementById("l1-4et").innerText = currentRun.QuartT1 || "---";
+        document.getElementById("l1-4s").innerText = currentRun.QuartS1 || "---";
+
+        document.getElementById("l2-driver").innerText =
+        `Driver: ${currentRun.Driver2 || "---"} | Class: ${currentRun.Class2 || "---"} | # ${currentRun.ID2 || "---"}`;
+
+        document.getElementById("l2-car").innerText =
+        `Car: ${currentRun.Car2 || "---"}`;
+
+        document.getElementById("l2-rt").innerText = currentRun.Reaction2 || "---";
+        document.getElementById("l2-60").innerText = currentRun.Sixty2 || "---";
+        document.getElementById("l2-4et").innerText = currentRun.QuartT2 || "---";
+        document.getElementById("l2-4s").innerText = currentRun.QuartS2 || "---";
+
+        /* PREVIOUS RACE */
+
+        if(previousRun){
+
+            document.getElementById("prev-l1-driver").innerText =
+            `Driver: ${previousRun.Driver1 || "---"} | Class: ${previousRun.Class1 || "---"} | # ${previousRun.ID1 || "---"}`;
+
+            document.getElementById("prev-l1-car").innerText =
+            `Car: ${previousRun.Car1 || "---"}`;
+
+            document.getElementById("prev-l1-rt").innerText = previousRun.Reaction1 || "---";
+            document.getElementById("prev-l1-60").innerText = previousRun.Sixty1 || "---";
+            document.getElementById("prev-l1-4et").innerText = previousRun.QuartT1 || "---";
+            document.getElementById("prev-l1-4s").innerText = previousRun.QuartS1 || "---";
+
+            document.getElementById("prev-l2-driver").innerText =
+            `Driver: ${previousRun.Driver2 || "---"} | Class: ${previousRun.Class2 || "---"} | # ${previousRun.ID2 || "---"}`;
+
+            document.getElementById("prev-l2-car").innerText =
+            `Car: ${previousRun.Car2 || "---"}`;
+
+            document.getElementById("prev-l2-rt").innerText = previousRun.Reaction2 || "---";
+            document.getElementById("prev-l2-60").innerText = previousRun.Sixty2 || "---";
+            document.getElementById("prev-l2-4et").innerText = previousRun.QuartT2 || "---";
+            document.getElementById("prev-l2-4s").innerText = previousRun.QuartS2 || "---";
+        }
+
+    }
+    catch(error){
+
+        document.getElementById("loading").innerText =
+        "Unable to connect to Supabase database.";
+
+        console.error(error);
+    }
+}
+
+fetchLiveScores();
+setInterval(fetchLiveScores,3000);
+
+</script>
+
 </body>
 </html>
