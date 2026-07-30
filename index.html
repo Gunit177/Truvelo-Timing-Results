@@ -325,8 +325,24 @@ async function fetchLiveScores(){
         const currentRun = data[0];
         const previousRun = data[1];
 
+        let clubName = currentRun.Club1;
+
+        if (
+            !clubName ||
+            clubName.trim().toLowerCase() === "no club"
+        ) {
+            clubName = currentRun.Club2;
+        }
+
+        if (
+            !clubName ||
+            clubName.trim().toLowerCase() === "no club"
+        ) {
+            clubName = "---";
+        }
+
         document.getElementById("club").innerText =
-            `${currentRun.Club1 || "---"} Raceway`;
+            `${clubName} Raceway`;
 
         /* CURRENT RACE */
 
