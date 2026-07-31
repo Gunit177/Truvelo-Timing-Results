@@ -325,24 +325,8 @@ async function fetchLiveScores(){
         const currentRun = data[0];
         const previousRun = data[1];
 
-        let clubName = currentRun.Club1;
-
-        if (
-            !clubName ||
-            clubName.trim().toLowerCase() === "no club"
-        ) {
-            clubName = currentRun.Club2;
-        }
-
-        if (
-            !clubName ||
-            clubName.trim().toLowerCase() === "no club"
-        ) {
-            clubName = "---";
-        }
-
         document.getElementById("club").innerText =
-            `${clubName} Raceway`;
+        "Boere Boss Plaas Drags - Worcester, W.C.";
 
         /* CURRENT RACE */
 
