@@ -8,12 +8,19 @@
 
 <style>
 
-#logo{
+.logo{
     position:absolute;
     top:15px;
     left:20px;
     width:180px;
+    z-index:10;
+}
+
+.logo img{
+    display:block;
+    width:100%;
     height:auto;
+    max-width:100%;
 }
 
 body{
@@ -56,17 +63,20 @@ h2{
     display:flex;
     justify-content:center;
     gap:25px;
-    flex-wrap:nowrap;
-    overflow-x:auto;
-    margin-bottom:30px;
+    flex-wrap:wrap;
+    width:100%;
+    max-width:1200px;
+    margin:0 auto 30px auto;
 }
 
 .lane-panel{
+    flex:1;
+    min-width:320px;
+    max-width:550px;
     background:#181a20;
     border:2px solid #3c4150;
     border-radius:10px;
     padding:20px;
-    width:500px;
     text-align:left;
 }
 
@@ -107,21 +117,66 @@ h2{
     color:#00ff64;
 }
 
-@media (max-width: 768px){
+@media (max-width:768px){
+
+    body{
+        padding:10px;
+        overflow-x:hidden;
+    }
+
+    h1{
+        font-size:1.8rem;
+        margin-top:10px;
+    }
+
+    #clock{
+        font-size:1rem;
+        margin-bottom:10px;
+    }
+
+    #club{
+        font-size:1.2rem;
+        margin-bottom:15px;
+    }
+
+    .container{
+        display:flex;
+        flex-direction:column;
+        align-items:stretch;
+        gap:15px;
+        width:100%;
+        max-width:none;
+        margin:0 auto 25px auto;
+    }
 
     .lane-panel{
-        width:42%;
-        padding:10px;
+        box-sizing:border-box;
+        flex:none;
+        width:100%;
+        min-width:0;
+        max-width:none;
+        padding:14px;
+    }
+
+    .driver-info{
+        font-size:0.85rem;
+        overflow-wrap:anywhere;
     }
 
     .metric-row{
-        font-size:0.85rem;
+        font-size:0.9rem;
+        gap:10px;
     }
 
     .value{
         font-size:1rem;
     }
 
+    .logo{
+        position:static;
+        width:130px;
+        margin:30px auto 10px auto;
+    }
 }
 
 </style>
@@ -129,8 +184,6 @@ h2{
 </head>
 
 <body>
-
-<img src="R.D.H.G TS Logo.PNG" id="logo">
 
 <h1>Ralf Gebert Timing Services</h1>
 
@@ -412,6 +465,10 @@ fetchLiveScores();
 setInterval(fetchLiveScores,3000);
 
 </script>
+
+<div class="logo">
+    <img src="R.D.H.G TS Logo.PNG" alt="TruDrags">
+</div>
 
 </body>
 </html>
