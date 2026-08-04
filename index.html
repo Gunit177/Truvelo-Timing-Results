@@ -279,7 +279,11 @@ const URL =
 "https://qgprnewkdzluruihzyhy.supabase.co/rest/v1/raceresults?order=id.desc&limit=2";
 
 const KEY =
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFncHJuZXdrZHpsdXJ1aWh6eWh5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMjI5MDgsImV4cCI6MjA5NzY5ODkwOH0.WjSnTF80FAABypJuDJfSTvd5_qigr4mJa-TCEsE-4Bc";
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFncHJuZXdrZHpsdXJ1aWh6eWh5
+
+Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMjI5MDgsImV4cCI6MjA5NzY5ODkwOH0.WjSnTF80FAABypJuDJfSTvd5_qigr4
+
+mJa-TCEsE-4Bc";
 
 function updateClock(){
 
@@ -324,14 +328,16 @@ async function fetchLiveScores(){
 
         const currentRun = data[0];
         const previousRun = data[1];
-
+        
         document.getElementById("club").innerText =
-        "Midvaal Raceway - Meyerton, Vereeniging";
+        (currentRun.Club || "---") + " Raceway";
 
         /* CURRENT RACE */
 
         document.getElementById("l1-driver").innerText =
-        `Driver: ${currentRun.Driver1 || "---"} | Class: ${currentRun.Class1 || "---"} | # ${currentRun.ID1 || "---"}`;
+        `Driver: ${currentRun.Driver1 || "---"} | Class: ${currentRun.Class1 || "---"} | # 
+
+${currentRun.ID1 || "---"}`;
 
         document.getElementById("l1-car").innerText =
         `Car: ${currentRun.Car1 || "---"}`;
@@ -342,7 +348,9 @@ async function fetchLiveScores(){
         document.getElementById("l1-4s").innerText = currentRun.QuartS1 || "---";
 
         document.getElementById("l2-driver").innerText =
-        `Driver: ${currentRun.Driver2 || "---"} | Class: ${currentRun.Class2 || "---"} | # ${currentRun.ID2 || "---"}`;
+        `Driver: ${currentRun.Driver2 || "---"} | Class: ${currentRun.Class2 || "---"} | # 
+
+${currentRun.ID2 || "---"}`;
 
         document.getElementById("l2-car").innerText =
         `Car: ${currentRun.Car2 || "---"}`;
@@ -357,7 +365,9 @@ async function fetchLiveScores(){
         if(previousRun){
 
             document.getElementById("prev-l1-driver").innerText =
-            `Driver: ${previousRun.Driver1 || "---"} | Class: ${previousRun.Class1 || "---"} | # ${previousRun.ID1 || "---"}`;
+            `Driver: ${previousRun.Driver1 || "---"} | Class: ${previousRun.Class1 || "---"} | # 
+
+${previousRun.ID1 || "---"}`;
 
             document.getElementById("prev-l1-car").innerText =
             `Car: ${previousRun.Car1 || "---"}`;
@@ -368,7 +378,9 @@ async function fetchLiveScores(){
             document.getElementById("prev-l1-4s").innerText = previousRun.QuartS1 || "---";
 
             document.getElementById("prev-l2-driver").innerText =
-            `Driver: ${previousRun.Driver2 || "---"} | Class: ${previousRun.Class2 || "---"} | # ${previousRun.ID2 || "---"}`;
+            `Driver: ${previousRun.Driver2 || "---"} | Class: ${previousRun.Class2 || "---"} | # 
+
+${previousRun.ID2 || "---"}`;
 
             document.getElementById("prev-l2-car").innerText =
             `Car: ${previousRun.Car2 || "---"}`;
