@@ -9,12 +9,10 @@
 <style>
 
 #logo{
-    position:fixed;
-    top:15px;
-    left:20px;
+    #logo{
+    float:left;
     width:180px;
-    height:auto;
-    z-index:1000;
+    margin:15px;
 }
 
 body{
@@ -27,7 +25,7 @@ body{
 
 h1{
     color:#00dcff;
-    font-size:2.5rem;
+    font-size:3rem;
     margin-bottom:10px;
 }
 
@@ -55,11 +53,9 @@ h2{
 
 .container{
     display:flex;
+    flex-wrap:wrap;
     justify-content:center;
     gap:25px;
-    flex-wrap:nowrap;
-    overflow-x:auto;
-    margin-bottom:30px;
 }
 
 .lane-panel{
@@ -108,29 +104,46 @@ h2{
     color:#00ff64;
 }
 
-@media (max-width: 768px){
+@media (max-width:768px){
 
-    .lane-panel{
-        width:42%;
+    body{
         padding:10px;
     }
 
-    .metric-row{
-        font-size:0.85rem;
+    #logo{
+        width:110px;
     }
 
-    .value{
+    h1{
+        font-size:2rem;
+    }
+
+    #clock{
         font-size:1rem;
     }
 
+    #club{
+        font-size:1.2rem;
+    }
+
+    .container{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .lane-panel{
+        width:95%;
+        max-width:500px;
+    }
 }
+
 </style>
 
 </head>
 
 <body>
 
-<img src="R.D.H.G TS Logo.PNG" id="logo">
+<img src="R.D.H.G TS Logo.png" id="logo">
 
 <h1>Ralf Gebert Timing Services</h1>
 
@@ -342,7 +355,9 @@ async function fetchLiveScores(){
         /* CURRENT RACE */
 
         document.getElementById("l1-driver").innerText =
-        `Driver: ${currentRun.Driver1 || "---"} | Class: ${currentRun.Class1 || "---"} | # ${currentRun.ID1 || "---"}`;
+        `Driver: ${currentRun.Driver1 || "---"} | Class: ${currentRun.Class1 || "---"} | # 
+
+${currentRun.ID1 || "---"}`;
 
         document.getElementById("l1-car").innerText =
         `Car: ${currentRun.Car1 || "---"}`;
@@ -353,7 +368,9 @@ async function fetchLiveScores(){
         document.getElementById("l1-4s").innerText = currentRun.QuartS1 || "---";
 
         document.getElementById("l2-driver").innerText =
-        `Driver: ${currentRun.Driver2 || "---"} | Class: ${currentRun.Class2 || "---"} | # ${currentRun.ID2 || "---"}`;
+        `Driver: ${currentRun.Driver2 || "---"} | Class: ${currentRun.Class2 || "---"} | # 
+
+${currentRun.ID2 || "---"}`;
 
         document.getElementById("l2-car").innerText =
         `Car: ${currentRun.Car2 || "---"}`;
@@ -368,7 +385,9 @@ async function fetchLiveScores(){
         if(previousRun){
 
             document.getElementById("prev-l1-driver").innerText =
-            `Driver: ${previousRun.Driver1 || "---"} | Class: ${previousRun.Class1 || "---"} | # ${previousRun.ID1 || "---"}`;
+            `Driver: ${previousRun.Driver1 || "---"} | Class: ${previousRun.Class1 || "---"} | # 
+
+${previousRun.ID1 || "---"}`;
 
             document.getElementById("prev-l1-car").innerText =
             `Car: ${previousRun.Car1 || "---"}`;
@@ -379,7 +398,9 @@ async function fetchLiveScores(){
             document.getElementById("prev-l1-4s").innerText = previousRun.QuartS1 || "---";
 
             document.getElementById("prev-l2-driver").innerText =
-            `Driver: ${previousRun.Driver2 || "---"} | Class: ${previousRun.Class2 || "---"} | # ${previousRun.ID2 || "---"}`;
+            `Driver: ${previousRun.Driver2 || "---"} | Class: ${previousRun.Class2 || "---"} | # 
+
+${previousRun.ID2 || "---"}`;
 
             document.getElementById("prev-l2-car").innerText =
             `Car: ${previousRun.Car2 || "---"}`;
