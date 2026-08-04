@@ -117,7 +117,7 @@ h2{
     color:#00ff64;
 }
 
-@media (max-width:768px){
+@media (max-width:1024px){
 
     body{
         padding:10px;
@@ -125,57 +125,83 @@ h2{
     }
 
     h1{
-        font-size:2.0rem;
+        font-size:1.8rem;
         margin-top:10px;
     }
 
     #clock{
-        font-size:1.2rem;
+        font-size:1rem;
         margin-bottom:10px;
     }
 
     #club{
-        font-size:1.4rem;
-        margin-bottom:10px;
+        font-size:1.2rem;
+        margin-bottom:15px;
     }
 
+    /*
+       Keep Lane 1 and Lane 2 side by side
+       on portrait and landscape mobile screens.
+    */
     .container{
-        display:flex;
-        flex-direction:column;
-        align-items:stretch;
-        gap:15px;
+        display:grid;
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        gap:10px;
         width:100%;
-        max-width:none;
+        max-width:100%;
         margin:0 auto 25px auto;
     }
 
     .lane-panel{
         box-sizing:border-box;
-        flex:none;
         width:100%;
         min-width:0;
         max-width:none;
-        padding:14px;
+        padding:10px;
+    }
+
+    .lane-title{
+        font-size:1.1rem;
+        margin-top:5px;
+        margin-bottom:10px;
     }
 
     .driver-info{
-        font-size:0.85rem;
+        padding:7px 4px;
+        font-size:0.72rem;
         overflow-wrap:anywhere;
     }
 
     .metric-row{
-        font-size:0.9rem;
-        gap:10px;
+        padding:8px 4px;
+        font-size:0.78rem;
+        gap:5px;
+    }
+
+    .label{
+        white-space:nowrap;
     }
 
     .value{
-        font-size:1rem;
+        font-size:0.88rem;
+        white-space:nowrap;
     }
 
+    /*
+       Because the logo element is at the bottom of the HTML,
+       static positioning keeps it at the bottom.
+    */
     .logo{
         position:static;
-        width:130px;
+        display:block;
+        width:120px;
         margin:30px auto 10px auto;
+    }
+
+    .logo img{
+        display:block;
+        width:100%;
+        height:auto;
     }
 }
 
