@@ -393,6 +393,21 @@ function updateClock(){
 updateClock();
 setInterval(updateClock,1000);
 
+function displayWithUnit(value, unit){
+
+    if(value === null || value === undefined){
+        return "---";
+    }
+
+    const text = String(value).trim();
+
+    if(text === "" || text === "---"){
+        return "---";
+    }
+
+    return `${text} ${unit}`;
+}
+    
 async function fetchLiveScores(){
 
     try{
@@ -437,10 +452,14 @@ ${currentRun.ID1 || "---"}`;
         document.getElementById("l1-car").innerText =
         `Car: ${currentRun.Car1 || "---"}`;
 
-        document.getElementById("l1-rt").innerText = currentRun.Reaction1 || "---";
-        document.getElementById("l1-60").innerText = currentRun.Sixty1 || "---";
-        document.getElementById("l1-4et").innerText = currentRun.QuartT1 || "---";
-        document.getElementById("l1-4s").innerText = currentRun.QuartS1 || "---";
+        document.getElementById("l1-rt").innerText =
+        displayWithUnit(currentRun.Reaction1, "s");
+        document.getElementById("l1-60").innerText =
+        displayWithUnit(currentRun.Sixty1, "s");
+        document.getElementById("l1-4et").innerText =
+        displayWithUnit(currentRun.QuartT1, "s");
+        document.getElementById("l1-4s").innerText =
+        displayWithUnit(currentRun.QuartS1, "km/h");
 
         document.getElementById("l2-driver").innerText =
         `Driver: ${currentRun.Driver2 || "---"} | Class: ${currentRun.Class2 || "---"} | # 
@@ -450,42 +469,53 @@ ${currentRun.ID2 || "---"}`;
         document.getElementById("l2-car").innerText =
         `Car: ${currentRun.Car2 || "---"}`;
 
-        document.getElementById("l2-rt").innerText = currentRun.Reaction2 || "---";
-        document.getElementById("l2-60").innerText = currentRun.Sixty2 || "---";
-        document.getElementById("l2-4et").innerText = currentRun.QuartT2 || "---";
-        document.getElementById("l2-4s").innerText = currentRun.QuartS2 || "---";
+        document.getElementById("l2-rt").innerText =
+        displayWithUnit(currentRun.Reaction2, "s");
+        document.getElementById("l2-60").innerText =
+        displayWithUnit(currentRun.Sixty2, "s");
+        document.getElementById("l2-4et").innerText =
+        displayWithUnit(currentRun.QuartT2, "s");
+        document.getElementById("l2-4s").innerText =
+        displayWithUnit(currentRun.QuartS2, "km/h");
 
         /* PREVIOUS RACE */
 
         if(previousRun){
 
-            document.getElementById("prev-l1-driver").innerText =
-            `Driver: ${previousRun.Driver1 || "---"} | Class: ${previousRun.Class1 || "---"} | # 
+        document.getElementById("prev-l1-driver").innerText =
+        `Driver: ${previousRun.Driver1 || "---"} | Class: ${previousRun.Class1 || "---"} | # 
 
 ${previousRun.ID1 || "---"}`;
 
-            document.getElementById("prev-l1-car").innerText =
-            `Car: ${previousRun.Car1 || "---"}`;
+        document.getElementById("prev-l1-car").innerText =
+        `Car: ${previousRun.Car1 || "---"}`;
 
-            document.getElementById("prev-l1-rt").innerText = previousRun.Reaction1 || "---";
-            document.getElementById("prev-l1-60").innerText = previousRun.Sixty1 || "---";
-            document.getElementById("prev-l1-4et").innerText = previousRun.QuartT1 || "---";
-            document.getElementById("prev-l1-4s").innerText = previousRun.QuartS1 || "---";
+        document.getElementById("prev-l1-rt").innerText =
+        displayWithUnit(previousRun.Reaction1, "s");
+        document.getElementById("prev-l1-60").innerText =
+        displayWithUnit(previousRun.Sixty1, "s");
+        document.getElementById("prev-l1-4et").innerText =
+        displayWithUnit(previousRun.QuartT1, "s");
+        document.getElementById("prev-l1-4s").innerText =
+        displayWithUnit(previousRun.QuartS1, "km/h");
 
-            document.getElementById("prev-l2-driver").innerText =
-            `Driver: ${previousRun.Driver2 || "---"} | Class: ${previousRun.Class2 || "---"} | # 
+        document.getElementById("prev-l2-driver").innerText =
+        `Driver: ${previousRun.Driver2 || "---"} | Class: ${previousRun.Class2 || "---"} | # 
 
 ${previousRun.ID2 || "---"}`;
 
-            document.getElementById("prev-l2-car").innerText =
-            `Car: ${previousRun.Car2 || "---"}`;
+        document.getElementById("prev-l2-car").innerText =
+        `Car: ${previousRun.Car2 || "---"}`;
 
-            document.getElementById("prev-l2-rt").innerText = previousRun.Reaction2 || "---";
-            document.getElementById("prev-l2-60").innerText = previousRun.Sixty2 || "---";
-            document.getElementById("prev-l2-4et").innerText = previousRun.QuartT2 || "---";
-            document.getElementById("prev-l2-4s").innerText = previousRun.QuartS2 || "---";
+        document.getElementById("prev-l2-rt").innerText =
+        displayWithUnit(previousRun.Reaction2, "s");
+        document.getElementById("prev-l2-60").innerText =
+        displayWithUnit(previousRun.Sixty2, "s");
+        document.getElementById("prev-l2-4et").innerText =
+        displayWithUnit(previousRun.QuartT2, "s");
+        document.getElementById("prev-l2-4s").innerText =
+        displayWithUnit(previousRun.QuartS2, "km/h");
         }
-
     }
     catch(error){
 
