@@ -92,10 +92,11 @@ h2{
     border-radius:5px;
     margin-bottom:10px;
     text-align:center;
-    flex-wrap:flex;
-    font-size:1.2rem
-}
 
+    white-space:nowrap;
+    font-size:clamp(0.68rem, 1.2vw, 1rem);
+}
+    
 .metric-row{
     display:flex;
     justify-content:space-between;
@@ -445,9 +446,7 @@ async function fetchLiveScores(){
         /* CURRENT RACE */
 
         document.getElementById("l1-driver").innerText =
-        `Driver: ${currentRun.Driver1 || "---"} | Class: ${currentRun.Class1 || "---"} | # 
-
-${currentRun.ID1 || "---"}`;
+        `Driver: ${currentRun.Driver1 || "---"} | Class: ${currentRun.Class1 || "---"} | #\u00A0${currentRun.ID1 || "---"}`; 
 
         document.getElementById("l1-car").innerText =
         `Car: ${currentRun.Car1 || "---"}`;
@@ -462,9 +461,7 @@ ${currentRun.ID1 || "---"}`;
         displayWithUnit(currentRun.QuartS1, "km/h");
 
         document.getElementById("l2-driver").innerText =
-        `Driver: ${currentRun.Driver2 || "---"} | Class: ${currentRun.Class2 || "---"} | # 
-
-${currentRun.ID2 || "---"}`;
+        `Driver: ${currentRun.Driver2 || "---"} | Class: ${currentRun.Class2 || "---"} | #\u00A0${currentRun.ID2 || "---"}`; 
 
         document.getElementById("l2-car").innerText =
         `Car: ${currentRun.Car2 || "---"}`;
@@ -483,9 +480,7 @@ ${currentRun.ID2 || "---"}`;
         if(previousRun){
 
         document.getElementById("prev-l1-driver").innerText =
-        `Driver: ${previousRun.Driver1 || "---"} | Class: ${previousRun.Class1 || "---"} | # 
-
-${previousRun.ID1 || "---"}`;
+        `Driver: ${previousRun.Driver1 || "---"} | Class: ${previousRun.Class1 || "---"} | #\u00A0${previousRun.ID1 || "---"}`;
 
         document.getElementById("prev-l1-car").innerText =
         `Car: ${previousRun.Car1 || "---"}`;
@@ -500,9 +495,7 @@ ${previousRun.ID1 || "---"}`;
         displayWithUnit(previousRun.QuartS1, "km/h");
 
         document.getElementById("prev-l2-driver").innerText =
-        `Driver: ${previousRun.Driver2 || "---"} | Class: ${previousRun.Class2 || "---"} | # 
-
-${previousRun.ID2 || "---"}`;
+        `Driver: ${previousRun.Driver2 || "---"} | Class: ${previousRun.Class2 || "---"} | #\u00A0${previousRun.ID2 || "---"}`; 
 
         document.getElementById("prev-l2-car").innerText =
         `Car: ${previousRun.Car2 || "---"}`;
