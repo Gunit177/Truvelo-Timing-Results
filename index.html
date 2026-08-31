@@ -246,7 +246,7 @@ Connecting to track telemetry database...
         </div>
 
         <div class="driver-info" id="l1-car">
-            Car: ---
+            Make/Model: ---
         </div>
 
         <div class="metric-row">
@@ -280,7 +280,7 @@ Connecting to track telemetry database...
         </div>
 
         <div class="driver-info" id="l2-car">
-            Car: ---
+            Make/Model: ---
         </div>
 
         <div class="metric-row">
@@ -449,7 +449,7 @@ async function fetchLiveScores(){
         `Driver: ${currentRun.Driver1 || "---"} | Class: ${currentRun.Class1 || "---"} | #\u00A0${currentRun.ID1 || "---"}`; 
 
         document.getElementById("l1-car").innerText =
-        `Car: ${currentRun.Car1 || "---"}`;
+        `Make/Model: ${currentRun.Car1 || "---"}`;
 
         document.getElementById("l1-rt").innerText =
         displayWithUnit(currentRun.Reaction1, "s");
@@ -464,7 +464,7 @@ async function fetchLiveScores(){
         `Driver: ${currentRun.Driver2 || "---"} | Class: ${currentRun.Class2 || "---"} | #\u00A0${currentRun.ID2 || "---"}`; 
 
         document.getElementById("l2-car").innerText =
-        `Car: ${currentRun.Car2 || "---"}`;
+        `Make/Model: ${currentRun.Car2 || "---"}`;
 
         document.getElementById("l2-rt").innerText =
         displayWithUnit(currentRun.Reaction2, "s");
@@ -483,7 +483,7 @@ async function fetchLiveScores(){
         `Driver: ${previousRun.Driver1 || "---"} | Class: ${previousRun.Class1 || "---"} | #\u00A0${previousRun.ID1 || "---"}`;
 
         document.getElementById("prev-l1-car").innerText =
-        `Car: ${previousRun.Car1 || "---"}`;
+        `Make/Model: ${previousRun.Car1 || "---"}`;
 
         document.getElementById("prev-l1-rt").innerText =
         displayWithUnit(previousRun.Reaction1, "s");
@@ -498,7 +498,7 @@ async function fetchLiveScores(){
         `Driver: ${previousRun.Driver2 || "---"} | Class: ${previousRun.Class2 || "---"} | #\u00A0${previousRun.ID2 || "---"}`; 
 
         document.getElementById("prev-l2-car").innerText =
-        `Car: ${previousRun.Car2 || "---"}`;
+        `Make/Model: ${previousRun.Car2 || "---"}`;
 
         document.getElementById("prev-l2-rt").innerText =
         displayWithUnit(previousRun.Reaction2, "s");
