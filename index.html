@@ -381,18 +381,35 @@ const URL =
 const KEY =
 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFncHJuZXdrZHpsdXJ1aWh6eWh5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMjI5MDgsImV4cCI6MjA5NzY5ODkwOH0.WjSnTF80FAABypJuDJfSTvd5_qigr4mJa-TCEsE-4Bc";
 
-function updateClock(){
+function getOrdinalSuffix(day) {
+    if (day > 3 && day < 21) return 'th';
+    switch (day % 10) {
+        case 1:  return "st";
+        case 2:  return "nd";
+        case 3:  return "rd";
+        default: return "th";
+    }
+}
 
+function updateClock(){
     const now = new Date();
 
+    // 1. Extract the individual date components
+    const weekday = now.toLocaleDateString('en-GB', { weekday: 'long' });
+    const day = now.getDate();
+    const month = now.toLocaleDateString('en-GB', { month: 'long' });
+    const year = now.getFullYear();
+
+    // 2. Format the time components
+    const timeString = now.toLocaleTimeString();
+
+    // 3. Combine everything into your target format
     document.getElementById("clock").innerText =
-        now.toLocaleDateString() +
-        " " +
-        now.toLocaleTimeString();
+        `${weekday}, ${day}${getOrdinalSuffix(day)} ${month} ${year} ${timeString}`;
 }
 
 updateClock();
-setInterval(updateClock,1000);
+setInterval(updateClock, 1000);
 
 function displayWithUnit(value, unit){
 
