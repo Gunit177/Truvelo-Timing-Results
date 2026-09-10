@@ -1,0 +1,78 @@
+.logo {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    width: 190px;
+    z-index: 10;
+}
+
+.logo img { display: block; width: 100%; height: auto; max-width: 100%; }
+
+body {
+    background: #01012e;
+    color: #e6e6e6;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 { color: #00dcff; font-size: 3.3rem; margin-bottom: 25px; }
+h2 { color: #ffcc00; }
+#clock { font-size: 1.5rem; color: white; margin-bottom: 20px; }
+#club { font-size: 1.9rem; color: #c73b04; margin-bottom: 1px; }
+#loading { font-size: 1.4rem; color: #ffcc00; margin-top: 20px; }
+
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 30px auto;
+}
+
+#dashboard { display: none; }
+
+.lane-panel {
+    flex: 1;
+    min-width: 320px;
+    max-width: 550px;
+    background: #181a20;
+    border: 2px solid #3c4150;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: left;
+}
+
+.lane-title { color: #ffcc00; text-align: center; font-size: 1.9rem; }
+.driver-info {
+    background: #242632;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    white-space: nowrap;
+    font-size: clamp(0.68rem, 1.2vw, 1rem);
+}
+
+.metric-row { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #2d3039; }
+.label { color: #a0a0a0; font-weight: bold; }
+.value { color: #00ff64; font-family: monospace; font-size: 1.2rem; }
+.section-title { margin-top: 30px; margin-bottom: 20px; color: #00ff64; font-size: 1.9rem; }
+
+@media (max-width: 1024px) {
+    body { padding: 10px; overflow-x: hidden; }
+    h1 { font-size: 2.2rem; margin-top: 10px; }
+    #clock { font-size: 1.2rem; margin-bottom: 10px; }
+    #club { font-size: 1.5rem; margin-bottom: 1px; }
+    .container { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; width: 100%; max-width: 100%; margin: 0 auto 25px auto; }
+    .lane-panel { box-sizing: border-box; width: 100%; min-width: 0; max-width: none; padding: 10px; }
+    .section-title { color: #00ff64; font-size: 1.4rem; }
+    .lane-title { font-size: 1.1rem; margin-top: 5px; margin-bottom: 10px; }
+    .driver-info { padding: 7px 4px; font-size: 0.75rem; overflow-wrap: anywhere; }
+    .metric-row { padding: 8px 4px; font-size: 0.78rem; gap: 5px; }
+    .label, .value { white-space: nowrap; }
+    .value { font-size: 0.82rem; }
+    .logo { position: static; display: block; width: 120px; margin: 30px auto 10px auto; }
+}
