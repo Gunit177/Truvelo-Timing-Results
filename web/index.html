@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ralf Gebert Timing Systems Live Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="dashboard.js" defer></script>
+</head>
+<body>
+    <h1>Ralf Gebert Timing Systems</h1>
+    <div id="clock"></div>
+    <div id="club"></div>
+    <div id="loading">Connecting to track telemetry database...</div>
+
+    <h2 class="section-title">Current Race</h2>
+    <div class="container" id="dashboard">
+        <section class="lane-panel">
+            <h2 class="lane-title">LANE 1</h2>
+            <div class="driver-info" id="l1-driver">Driver: ---</div>
+            <div class="driver-info" id="l1-car">Car: ---</div>
+            <div class="metric-row"><span class="label">Reaction</span><span class="value" id="l1-rt">---</span></div>
+            <div class="metric-row"><span class="label">60 Ft</span><span class="value" id="l1-60">---</span></div>
+            <div class="metric-row"><span class="label">1/4 ET</span><span class="value" id="l1-4et">---</span></div>
+            <div class="metric-row"><span class="label">1/4 Speed</span><span class="value" id="l1-4s">---</span></div>
+        </section>
+
+        <section class="lane-panel">
+            <h2 class="lane-title">LANE 2</h2>
+            <div class="driver-info" id="l2-driver">Driver: ---</div>
+            <div class="driver-info" id="l2-car">Car: ---</div>
+            <div class="metric-row"><span class="label">Reaction</span><span class="value" id="l2-rt">---</span></div>
+            <div class="metric-row"><span class="label">60 Ft</span><span class="value" id="l2-60">---</span></div>
+            <div class="metric-row"><span class="label">1/4 ET</span><span class="value" id="l2-4et">---</span></div>
+            <div class="metric-row"><span class="label">1/4 Speed</span><span class="value" id="l2-4s">---</span></div>
+        </section>
+    </div>
+
+    <h2 class="section-title">Previous Race</h2>
+    <div class="container" id="previous-dashboard">
+        <section class="lane-panel">
+            <h2 class="lane-title">LANE 1</h2>
+            <div class="driver-info" id="prev-l1-driver"></div>
+            <div class="driver-info" id="prev-l1-car"></div>
+            <div class="metric-row"><span class="label">Reaction</span><span class="value" id="prev-l1-rt"></span></div>
+            <div class="metric-row"><span class="label">60 Ft</span><span class="value" id="prev-l1-60"></span></div>
+            <div class="metric-row"><span class="label">1/4 ET</span><span class="value" id="prev-l1-4et"></span></div>
+            <div class="metric-row"><span class="label">1/4 Speed</span><span class="value" id="prev-l1-4s"></span></div>
+        </section>
+
+        <section class="lane-panel">
+            <h2 class="lane-title">LANE 2</h2>
+            <div class="driver-info" id="prev-l2-driver"></div>
+            <div class="driver-info" id="prev-l2-car"></div>
+            <div class="metric-row"><span class="label">Reaction</span><span class="value" id="prev-l2-rt"></span></div>
+            <div class="metric-row"><span class="label">60 Ft</span><span class="value" id="prev-l2-60"></span></div>
+            <div class="metric-row"><span class="label">1/4 ET</span><span class="value" id="prev-l2-4et"></span></div>
+            <div class="metric-row"><span class="label">1/4 Speed</span><span class="value" id="prev-l2-4s"></span></div>
+        </section>
+    </div>
+
+    <div class="logo">
+        <img src="assets/R.D.H.G TS Logo.PNG" alt="Truvelo Drags">
+    </div>
+</body>
+</html>
