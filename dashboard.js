@@ -70,6 +70,12 @@ function updateClock() {
         `${weekday}, ${day} ${month} ${year}  ${time}`;
 }
 
+updateClock();
+setInterval(
+    updateClock,
+    1000
+);
+
 function displayWithUnit(value, unit) {
     if (value === null || value === undefined) return "---";
     const text = String(value).trim();
@@ -116,7 +122,5 @@ async function fetchLiveScores() {
     }
 }
 
-updateClock();
-setInterval(updateClock, 1000);
 fetchLiveScores();
 setInterval(fetchLiveScores, 3000);
