@@ -5,18 +5,70 @@ function setText(id, value) {
     document.getElementById(id).innerText = value;
 }
 
-function updateClock(){
+function ordinalDay(day) {
+
+    if (day >= 11 && day <= 13) {
+
+        return `${day}th`;
+    }
+
+    switch (day % 10) {
+
+        case 1:
+            return `${day}st`;
+
+        case 2:
+            return `${day}nd`;
+
+        case 3:
+            return `${day}rd`;
+
+        default:
+            return `${day}th`;
+    }
+}
+
+function updateClock() {
 
     const now = new Date();
 
-    document.getElementById("clock").innerText =
-        now.toLocaleDateString() +
-        " " +
-        now.toLocaleTimeString();
-}
+    const weekday =
+        now.toLocaleDateString(
+            "en-ZA",
+            {
+                weekday: "long"
+            }
+        );
 
-updateClock();
-setInterval(updateClock,1000);
+    const month =
+        now.toLocaleDateString(
+            "en-ZA",
+            {
+                month: "long"
+            }
+        );
+
+    const year =
+        now.getFullYear();
+
+    const day =
+        ordinalDay(
+            now.getDate()
+        );
+
+    const time =
+        now.toLocaleTimeString(
+            "en-ZA",
+            {
+                hour12: false
+            }
+        );
+
+    document.getElementById(
+        "clock"
+    ).innerText =
+        `${weekday}, ${day} ${month} ${year}  ${time}`;
+}
 
 function displayWithUnit(value, unit) {
     if (value === null || value === undefined) return "---";
