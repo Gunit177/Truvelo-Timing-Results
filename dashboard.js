@@ -79,7 +79,7 @@ function displayWithUnit(value, unit) {
 function updateLane(prefix, run, laneNumber) {
     const suffix = String(laneNumber);
     setText(prefix + "driver", `Driver: ${run["Driver" + suffix] || "---"} | Class: ${run["Class" + suffix] || "---"} | #\u00A0${run["ID" + suffix] || "---"}`);
-    setText(prefix + "car", `Car: ${run["Car" + suffix] || "---"}`);
+    setText(prefix + "car", `Make/Model: ${run["Make/Model" + suffix] || "---"}`);
     setText(prefix + "rt", displayWithUnit(run["Reaction" + suffix], "s"));
     setText(prefix + "60", displayWithUnit(run["Sixty" + suffix], "s"));
     setText(prefix + "4et", displayWithUnit(run["QuartT" + suffix], "s"));
