@@ -63,14 +63,14 @@ h2 { color: #ffcc00; }
 
 @media (max-width: 1024px) {
     body { padding: 10px; overflow-x: hidden; }
-    h1 { font-size: 2.1rem; margin-top: 10px; }
+    h1 { font-size: 2.0rem; margin-top: 10px; }
     #clock { font-size: 1.2rem; margin-bottom: 10px; }
     #club { font-size: 1.5rem; margin-bottom: 1px; }
     .container { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; width: 100%; max-width: 100%; margin: 0 auto 25px auto; }
     .lane-panel { box-sizing: border-box; width: 100%; min-width: 0; max-width: none; padding: 10px; }
     .section-title { color: #00ff64; font-size: 1.4rem; }
     .lane-title { font-size: 1.1rem; margin-top: 5px; margin-bottom: 10px; }
-    .driver-info { padding: 7px 4px; font-size: 0.58rem; overflow-wrap: anywhere; }
+    .driver-info { padding: 7px 4px; font-size: 0.60rem; overflow-wrap: anywhere; }
     .metric-row { padding: 8px 4px; font-size: 0.78rem; gap: 5px; }
     .label, .value { white-space: nowrap; }
     .value { font-size: 0.82rem; }
