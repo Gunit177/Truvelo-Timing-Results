@@ -63,7 +63,7 @@ h2 { color: #ffcc00; }
 
 @media (max-width: 1024px) {
     body { padding: 10px; overflow-x: hidden; }
-    h1 { font-size: 1.9rem; margin-top: 10px; }
+    h1 { font-size: 1.8rem; margin-top: 10px; }
     #clock { font-size: 1.2rem; margin-bottom: 10px; }
     #club { font-size: 1.5rem; margin-bottom: 1px; }
     .container { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; width: 100%; max-width: 100%; margin: 0 auto 25px auto; }
