@@ -102,7 +102,7 @@ async function fetchLiveScores() {
         document.getElementById("loading").style.display = "none";
         document.getElementById("dashboard").style.display = "flex";
 
-        setText("club", (data[0].Club || "---") + " Raceway");
+        setText("club", (data[0].Club || "---"));
         updateLane("l1-", data[0], 1);
         updateLane("l2-", data[0], 2);
 
