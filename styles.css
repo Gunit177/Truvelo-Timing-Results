@@ -85,6 +85,8 @@ h2 { color: #ffcc00; }
 }
 
 .lane-panel.winner { border-color: #00ff64; box-shadow: 0 0 10px rgba(0, 255, 100, 0.35); }
+.lane-panel.red-light { border-color: #f84d4d; box-shadow: 0 0 10px rgba(248, 77, 77, 0.35); }
+.winner-indicator.red-light, .value.red-light { color: #f84d4d; }
 .metric-row { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #2d3039; }
 .driver-info + .metric-row { margin-top: auto; }
 .label { color: #a0a0a0; font-weight: bold; }

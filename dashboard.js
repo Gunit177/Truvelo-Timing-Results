@@ -49,16 +49,32 @@ function calculateTotalTime(reaction, quarterEt) {
 function determineWinner(run) {
     const lane1Total = calculateTotalTime(run.Reaction1, run.QuartT1);
     const lane2Total = calculateTotalTime(run.Reaction2, run.QuartT2);
+    const lane1Reaction = timingNumber(run.Reaction1);
+    const lane2Reaction = timingNumber(run.Reaction2);
+    const lane1Et = timingNumber(run.QuartT1);
+    const lane2Et = timingNumber(run.QuartT2);
+    const lane1RedLight = lane1Reaction !== null && lane1Reaction < 0;
+    const lane2RedLight = lane2Reaction !== null && lane2Reaction < 0;
+    const lane1Eligible = lane1Reaction !== null && lane1Reaction >= 0
+        && lane1Et !== null && lane1Et > 0 && lane1Total !== null;
+    const lane2Eligible = lane2Reaction !== null && lane2Reaction >= 0
+        && lane2Et !== null && lane2Et > 0 && lane2Total !== null;
     let winner = null;
 
-    // Compare combined times at the same three-decimal precision as the display.
-    if (lane1Total !== null && lane2Total !== null) {
+    // A negative reaction marks that lane as a red light, regardless of its ET.
+    // The other lane must have a valid completed result before it can win.
+    if (lane1RedLight && lane2Eligible) {
+        winner = 2;
+    } else if (lane2RedLight && lane1Eligible) {
+        winner = 1;
+    } else if (lane1Eligible && lane2Eligible) {
+        // Compare clean runs at the same precision as the displayed totals.
         const l1 = Number(lane1Total.toFixed(3));
         const l2 = Number(lane2Total.toFixed(3));
         winner = l1 < l2 ? 1 : l2 < l1 ? 2 : "tie";
     }
 
-    return { lane1Total, lane2Total, winner };
+    return { lane1Total, lane2Total, lane1RedLight, lane2RedLight, winner };
 }
 
 function displayWithUnit(value, unit) {
@@ -82,10 +98,14 @@ function updateLane(prefix, run, laneNumber, raceResult, panelId, winnerId) {
     const total = laneNumber === 1 ? raceResult.lane1Total : raceResult.lane2Total;
     setText(prefix + "total", total === null ? "---" : `${total.toFixed(3)} s`);
 
-    const isWinner = raceResult.winner === laneNumber;
+    const isRedLight = laneNumber === 1 ? raceResult.lane1RedLight : raceResult.lane2RedLight;
+    const isWinner = !isRedLight && raceResult.winner === laneNumber;
     document.getElementById(panelId).classList.toggle("winner", isWinner);
-    document.getElementById(winnerId).classList.toggle("active", isWinner);
-    setText(winnerId, isWinner ? "WINNER" : "");
+    document.getElementById(panelId).classList.toggle("red-light", isRedLight);
+    document.getElementById(winnerId).classList.toggle("active", isWinner || isRedLight);
+    document.getElementById(winnerId).classList.toggle("red-light", isRedLight);
+    document.getElementById(prefix + "rt").classList.toggle("red-light", isRedLight);
+    setText(winnerId, isRedLight ? "RED LIGHT" : isWinner ? "WINNER" : "");
 }
 
 function renderRace(run, previous = false) {
