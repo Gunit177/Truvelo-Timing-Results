@@ -42,7 +42,8 @@ function calculateTotalTime(reaction, quarterEt) {
     const rt = timingNumber(reaction);
     const et = timingNumber(quarterEt);
     if (rt === null || et === null) return null;
-    const total = rt + et;
+    // Use the reaction's magnitude here; keep its sign for display and red lights.
+    const total = Math.abs(rt) + et;
     return Number.isFinite(total) ? total : null;
 }
 
