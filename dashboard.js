@@ -129,6 +129,8 @@ function showResults(data) {
         renderRace(null);
         renderRace(null, true);
         setText("club", "");
+        const historyLink = document.getElementById("live-history-link");
+        if (historyLink) historyLink.href = "history.html";
         document.getElementById("dashboard").hidden = true;
         document.getElementById("previous-dashboard").hidden = true;
         hasRaceData = false;
@@ -137,6 +139,12 @@ function showResults(data) {
     }
 
     setText("club", displayText(data[0].Club));
+    const historyLink = document.getElementById("live-history-link");
+    const currentClub = displayText(data[0].Club);
+    if (historyLink) {
+        historyLink.href = currentClub === "---" ? "history.html"
+            : "history.html?club=" + encodeURIComponent(currentClub);
+    }
     renderRace(data[0]);
     // An absent second result must clear the old previous race and its highlights.
     renderRace(data[1] || null, true);
@@ -186,7 +194,11 @@ async function fetchLiveScores() {
     }
 }
 
-updateClock();
-setInterval(updateClock, 1000);
-fetchLiveScores();
-setInterval(fetchLiveScores, POLL_INTERVAL_MS);
+// The history page also loads these connection settings and calculation helpers.
+// Only start the live-results polling when its panels are present.
+if (document.getElementById("dashboard")) {
+    updateClock();
+    setInterval(updateClock, 1000);
+    fetchLiveScores();
+    setInterval(fetchLiveScores, POLL_INTERVAL_MS);
+}

@@ -1,6 +1,37 @@
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 
+.dashboard-nav {
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    z-index: 12;
+    display: flex;
+    justify-content: flex-end;
+}
+.nav-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 10px 16px;
+    border: 1px solid #00dcff;
+    border-radius: 8px;
+    background: #141c2b;
+    color: #a9f3ff;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+.nav-button:hover { background: #203345; color: #fff; }
+.nav-button:focus-visible { outline: 3px solid #ffcc00; outline-offset: 4px; }
+
+@media (max-width: 1024px) {
+    .dashboard-nav { position: static; margin: 0 0 18px; }
+    .nav-button { padding: 9px 12px; font-size: 0.85rem; }
+}
+
 .logo {
     position: absolute;
     top: 15px;

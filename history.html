@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live History Dashboard | Ralf Gebert Timing Systems</title>
+    <meta name="description" content="Live lane-by-lane drag racing results for the selected event day.">
+    <link rel="stylesheet" href="styles.css?v=20261102-history1">
+    <link rel="stylesheet" href="history.css?v=20261102-history1">
+    <script src="dashboard.js?v=20261102-history1" defer></script>
+    <script src="history.js?v=20261102-history1" defer></script>
+</head>
+<body class="history-page">
+    <div class="history-shell">
+        <header class="history-masthead">
+            <a class="history-brand" href="index.html" aria-label="Ralf Gebert Timing Systems live results">
+                <img src="assets/R.D.H.G TS Logo.PNG" alt="Ralf Gebert Timing Systems">
+            </a>
+            <div class="history-brand-copy">
+                <span>Ralf Gebert</span>
+                <span>Timing Systems</span>
+            </div>
+            <nav class="history-return" aria-label="Dashboard navigation">
+                <a class="nav-button" id="history-back-link" href="index.html">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m14 6-6 6 6 6M8 12h12"/></svg>
+                    Live Results Dashboard
+                </a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="history-heading" aria-labelledby="history-title">
+                <div>
+                    <p class="history-eyebrow">Drag racing · event history</p>
+                    <h1 id="history-title">Live History Dashboard</h1>
+                    <p class="history-intro">Every recorded run, with both lanes together.</p>
+                </div>
+                <div class="history-time-block">
+                    <span class="history-timezone">South African Standard Time</span>
+                    <div id="clock">Loading local event time...</div>
+                </div>
+            </section>
+
+            <section class="history-overview" aria-label="Event summary">
+                <div class="history-event-strip">
+                    <h2 id="history-day-label">Today's event</h2>
+                    <span class="history-live-label" id="history-live-label">Live · updates every 5s</span>
+                </div>
+                <div class="history-summary">
+                    <div class="history-stat">
+                        <span class="history-stat-label">Runs shown</span>
+                        <strong class="history-stat-value" id="history-run-count">—</strong>
+                    </div>
+                    <div class="history-stat">
+                        <span class="history-stat-label">Lane entries</span>
+                        <strong class="history-stat-value" id="history-lane-count">—</strong>
+                    </div>
+                    <div class="history-stat">
+                        <span class="history-stat-label">Red lights</span>
+                        <strong class="history-stat-value history-red-count" id="history-red-count">—</strong>
+                    </div>
+                    <div class="history-stat history-stat-updated">
+                        <span class="history-stat-label">Last updated</span>
+                        <strong class="history-stat-value" id="history-updated">Waiting for results</strong>
+                    </div>
+                </div>
+            </section>
+
+            <section class="history-controls" aria-label="History filters">
+                <div class="history-field history-date-field">
+                    <label for="history-date">Event day</label>
+                    <div class="history-date-controls">
+                        <input type="date" id="history-date">
+                        <button type="button" class="history-small-button" id="history-today">Today</button>
+                    </div>
+                </div>
+                <div class="history-field history-club-field">
+                    <label for="history-club">Club / venue</label>
+                    <select id="history-club"><option value="">All clubs</option></select>
+                </div>
+                <div class="history-field history-search-field">
+                    <label for="history-search">Find a racer</label>
+                    <input type="search" id="history-search" placeholder="Name, race no. or make/model" autocomplete="off">
+                </div>
+                <div class="history-field history-order-field">
+                    <label for="history-order">Run order</label>
+                    <select id="history-order">
+                        <option value="newest">Newest first</option>
+                        <option value="oldest">Oldest first</option>
+                    </select>
+                </div>
+                <button type="button" class="history-refresh-button" id="history-refresh">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 7v5h-5M4 17v-5h5M5.5 7.5a7 7 0 0 1 11.6-2L20 9M4 15l2.9 3.5a7 7 0 0 0 11.6-2"/></svg>
+                    Refresh
+                </button>
+            </section>
+
+            <div class="history-results-heading">
+                <p class="history-guide">Lane 1 is followed by Lane 2 for each run.</p>
+                <div class="history-legend" aria-label="Result colours">
+                    <span class="history-legend-winner">Winner</span>
+                    <span class="history-legend-red">Red light</span>
+                </div>
+            </div>
+
+            <p id="history-status" class="history-status" role="status" aria-live="polite">Loading event history...</p>
+            <div id="history-list" class="history-list" aria-label="Race run history"></div>
+
+            <section id="history-empty" class="history-empty" hidden aria-labelledby="history-empty-title">
+                <div class="history-empty-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="17"/><path d="M24 14v11l7 4M8 7v9h9"/></svg>
+                </div>
+                <h2 id="history-empty-title">No runs recorded yet</h2>
+                <p id="history-empty-text">Results will appear here as they are uploaded.</p>
+            </section>
+        </main>
+
+        <footer class="history-footer">
+            <p id="history-date-note">Times shown in South African Standard Time (SAST, UTC+2).</p>
+            <p>Event days and run times use the upload timestamp. A delayed upload may arrive after the actual race day.</p>
+            <p>Truvelo Drags · Ralf Gebert Timing Systems</p>
+        </footer>
+    </div>
+</body>
+</html>
