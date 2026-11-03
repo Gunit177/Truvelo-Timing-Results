@@ -2,19 +2,24 @@
 [hidden] { display: none !important; }
 
 .dashboard-nav {
-    position: absolute;
-    top: 20px;
-    right: 28px;
+    position: relative;
     z-index: 12;
-    display: flex;
-    justify-content: flex-end;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 18px;
 }
+.dashboard-nav .nav-button:first-child { justify-self: start; }
+.dashboard-nav .nav-button:last-child { justify-self: end; }
 .nav-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
     min-height: 44px;
+    min-width: 0;
+    max-width: 100%;
     padding: 10px 16px;
     border: 1px solid #00dcff;
     border-radius: 8px;
@@ -22,19 +27,21 @@
     color: #a9f3ff;
     font-size: 0.9rem;
     font-weight: bold;
+    line-height: 1.25;
+    text-align: center;
     text-decoration: none;
 }
 .nav-button:hover { background: #203345; color: #fff; }
 .nav-button:focus-visible { outline: 3px solid #ffcc00; outline-offset: 4px; }
 
 @media (max-width: 1024px) {
-    .dashboard-nav { position: static; margin: 0 0 18px; }
+    .dashboard-nav { gap: 8px; }
     .nav-button { padding: 9px 12px; font-size: 0.85rem; }
 }
 
 .logo {
     position: absolute;
-    top: 15px;
+    top: 90px;
     left: 20px;
     width: 190px;
     z-index: 10;

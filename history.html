@@ -5,13 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live History Dashboard | Ralf Gebert Timing Systems</title>
     <meta name="description" content="Live lane-by-lane drag racing results for the selected event day.">
-    <link rel="stylesheet" href="styles.css?v=20261102-history1">
-    <link rel="stylesheet" href="history.css?v=20261102-history1">
+    <link rel="stylesheet" href="styles.css?v=20261103-navigation1">
+    <link rel="stylesheet" href="history.css?v=20261103-navigation1">
     <script src="dashboard.js?v=20261102-history1" defer></script>
     <script src="history.js?v=20261102-history1" defer></script>
 </head>
 <body class="history-page">
     <div class="history-shell">
+        <nav class="dashboard-nav history-return" aria-label="Dashboard navigation">
+            <a class="nav-button" id="truvelo-website-link" href="https://gunit177.github.io/Truvelo-Drags-Website/#home" target="_blank" rel="noopener noreferrer" aria-label="Truvelo Drags Website (opens in a new tab)">Truvelo Drags Website <span aria-hidden="true">&#8599;</span></a>
+            <a class="nav-button" id="history-back-link" href="index.html">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m14 6-6 6 6 6M8 12h12"/></svg>
+                Live Results Dashboard
+            </a>
+        </nav>
         <header class="history-masthead">
             <a class="history-brand" href="index.html" aria-label="Ralf Gebert Timing Systems live results">
                 <img src="assets/R.D.H.G TS Logo.PNG" alt="Ralf Gebert Timing Systems">
@@ -20,12 +27,6 @@
                 <span>Ralf Gebert</span>
                 <span>Timing Systems</span>
             </div>
-            <nav class="history-return" aria-label="Dashboard navigation">
-                <a class="nav-button" id="history-back-link" href="index.html">
-                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m14 6-6 6 6 6M8 12h12"/></svg>
-                    Live Results Dashboard
-                </a>
-            </nav>
         </header>
 
         <main>
@@ -33,7 +34,7 @@
                 <div>
                     <p class="history-eyebrow">Drag racing · event history</p>
                     <h1 id="history-title">Live History Dashboard</h1>
-                    <p class="history-intro">Every recorded run of the day.</p>
+                    <p class="history-intro">Every recorded run, with both lanes together.</p>
                 </div>
                 <div class="history-time-block">
                     <span class="history-timezone">South African Standard Time</span>

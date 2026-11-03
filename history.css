@@ -18,13 +18,12 @@
 .history-page button, .history-page a, .history-page input, .history-page select { -webkit-tap-highlight-color: transparent; }
 .history-page button:focus-visible, .history-page a:focus-visible, .history-page input:focus-visible, .history-page select:focus-visible { outline: 3px solid #00dcff; outline-offset: 3px; }
 
-.history-masthead { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; padding-bottom: 20px; border-bottom: 1px solid var(--history-line); }
+.history-masthead { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 14px; padding-bottom: 20px; border-bottom: 1px solid var(--history-line); }
 .history-brand { display: block; width: 65px; line-height: 0; }
 .history-brand img { width: 100%; height: auto; }
 .history-brand-copy { display: flex; flex-direction: column; gap: 4px; color: var(--history-cyan); font-size: 1.08rem; font-weight: bold; line-height: 1.2; }
 .history-brand-copy span:last-child { color: #d6e4ed; font-size: .8rem; font-weight: normal; letter-spacing: .08em; text-transform: uppercase; }
-.history-return { justify-self: end; }
-.history-page .history-return .nav-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; padding: 10px 15px; border: 1px solid #226078; border-radius: 7px; background: #111a32; color: #e5faff; font-size: .85rem; font-weight: bold; text-decoration: none; line-height: 1.25; text-align: center; }
+.history-page .history-return .nav-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 10px 15px; border: 1px solid #226078; border-radius: 7px; background: #111a32; color: #e5faff; font-size: .85rem; font-weight: bold; text-decoration: none; line-height: 1.25; text-align: center; }
 .history-page .history-return .nav-button:hover { border-color: var(--history-cyan); background: #15253e; }
 .history-return svg, .history-refresh-button svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: 0 0 auto; }
 
@@ -162,7 +161,7 @@
     .history-brand { width: 48px; }
     .history-brand-copy { font-size: .9rem; }
     .history-brand-copy span:last-child { font-size: .59rem; letter-spacing: .045em; }
-    .history-page .history-return .nav-button { max-width: 145px; padding: 9px 10px; font-size: .72rem; }
+    .history-page .history-return .nav-button { padding: 9px 10px; font-size: .85rem; }
     .history-return svg { width: 15px; height: 15px; }
     .history-heading { display: block; padding: 25px 0 22px; }
     .history-page h1 { font-size: 2rem; line-height: 1.12; }
